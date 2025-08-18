@@ -205,7 +205,7 @@ uv run src/core/server.py [OPTIONS]
 - `--transport <mode>`: Transport mode (choices: `streamable-http`, `stdio`)
 - `--debug`: Enable debug mode with additional logging
 - `--log-level <level>`: Set the logging level (choices: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`)
-- `--tools <categories>`: Comma-separated list of tool categories to enable (e.g., `infra,app,events`)
+- `--tools <categories>`: Comma-separated list of tool categories to enable (e.g., infra,app,events). Enabling a category will also enable its related prompts. For example: `--tools infra` enables the infra tools and all infra-related prompts.
 - `--list-tools`: List all available tool categories and exit
 - `--port <port>`: Port to listen on (default: 8000)
 - `--help`: Show help message and exit
@@ -245,10 +245,10 @@ uv run src/core/server.py --transport streamable-http --debug
 # Start with a specific log level
 uv run src/core/server.py --transport streamable-http --log-level WARNING
 
-# Start with specific tool categories only
+# Start with specific tool and prompts categories only
 uv run src/core/server.py --transport streamable-http --tools infra,events
 
-# Combine options (specific log level, custom tools)
+# Combine options (specific log level, custom tools and prompts)
 uv run src/core/server.py --transport streamable-http --log-level DEBUG --tools app,events
 ```
 
@@ -298,7 +298,7 @@ uv run src/core/server.py --transport stdio
 
 ### Tool Categories
 
-You can optimize server performance by enabling only the tool categories you need.
+You can optimize server performance by enabling only the tools and prompts categories you need:
 
 #### Using CLI (PyPI Installation)
 
@@ -323,9 +323,9 @@ uv run src/core/server.py --transport streamable-http --tools events
 ```
 
 **Available Categories:**
-- **`infra`**: Infrastructure monitoring tools (resources, catalog, topology, analyze, metrics)
-- **`app`**: Application performance tools (resources, metrics, alerts, catalog, topology, analyze)
-- **`events`**: Event monitoring tools (Kubernetes events, agent monitoring)
+- **`infra`**: Infrastructure monitoring tools and prompts (resources, catalog, topology, analyze, metrics)
+- **`app`**: Application performance tools and prompts (resources, metrics, alerts, catalog, topology, analyze, settings, global alerts)
+- **`events`**: Event monitoring tools and prompts(Kubernetes events, agent monitoring)
 
 ### Verifying Server Status
 

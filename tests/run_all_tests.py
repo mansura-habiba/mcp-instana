@@ -287,6 +287,7 @@ def run_all_tests(test_path: Optional[str] = None, verbose: bool = False) -> boo
             'tests.application.test_application_metrics',
             'tests.application.test_application_resources',
             'tests.application.test_application_topology',
+            'tests.application.test_application_global_alert_config',
             'tests.core.test_server',
             'tests.core.test_utils',
             'tests.event.test_events_tools',

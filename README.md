@@ -394,7 +394,8 @@ Configure Claude Desktop to pass Instana credentials via headers:
     "Instana MCP Server": {
       "command": "npx",
       "args": [
-         "mcp-remote", "http://0.0.0.0:8000/mcp/",
+        "mcp-remote", "http://0.0.0.0:8000/mcp/",
+        "--allow-http",
         "--header", "instana-base-url: https://your-instana-instance.instana.io",
         "--header", "instana-api-token: your_instana_api_token"
       ]
@@ -486,6 +487,7 @@ You can directly create or update `.vscode/mcp.json` with the following configur
       "command": "npx",
       "args": [
         "mcp-remote", "http://0.0.0.0:8000/mcp/",
+        "--allow-http",
         "--header", "instana-base-url: https://your-instana-instance.instana.io",
         "--header", "instana-api-token: your_instana_api_token"
       ],

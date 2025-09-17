@@ -651,12 +651,15 @@ Here is an example of a GitHub Copilot response:
   - [x] Infrastructure Topology
     - [x] Get Hosts for Snapshot
     - [x] Get Topology
-  - [ ] Events
-    - [ ] Events
-      - [ ] Get all Events
+  - [x] Events
+    - [x] Events
+      - [x] Get Event
       - [x] Get Events by IDs
       - [x] Get Agent Monitoring Events
       - [x] Get Kubernetes Info Events
+      - [x] Get Issues
+      - [x] Get Incidents
+      - [x] Get Changes
 
 ## Available Tools
 
@@ -699,9 +702,14 @@ Here is an example of a GitHub Copilot response:
 | `enable_application_alert_config`                             | Application Alert Configuration| Enable Application Alert Config                        |
 | `disable_application_alert_config`                            | Application Alert Configuration| Disable Smart Alert Config                             |
 | `restore_application_alert_config`                            | Application Alert Configuration| Restore Smart Alert Config                             |
-| `get_event`                                                   | Events                         | Get Events by IDs                                      |
+| `get_event`                                                   | Events                         | Get Specific Event by ID                               |
 | `get_kubernetes_info_events`                                  | Events                         | Get Kubernetes Info Events                             |
 | `get_agent_monitoring_events`                                 | Events                         | Get Agent Monitoring Events                            |
+| `get_issues`                                                  | Events                         | Get Issues                                             |
+| `get_incidents`                                               | Events                         | Get Incidents                                          |
+| `get_changes`                                                 | Events                         | Get Changes                                            |
+| `get_events_by_ids`                                           | Events                         | Get Events by IDs                                      |
+
 
 ## Tool Filtering
 
@@ -725,7 +733,7 @@ The MCP server supports selective tool loading to optimize performance and reduc
   - Application Analyze: Application performance analysis
 
 - **`events`**: Event monitoring tools
-  - Events: Kubernetes events, agent monitoring, and system event tracking
+  - Events: Kubernetes events, agent monitoring, incidents, issues, changes and system event tracking
 
 ### Usage Examples
 

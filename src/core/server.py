@@ -151,7 +151,13 @@ def create_app(token: str, base_url: str, port: int = int(os.getenv("PORT", "808
                     client = getattr(clients_state, attr_name, None)
                     if client and hasattr(client, tool_name):
                         bound_method = getattr(client, tool_name)
-                        server.tool()(bound_method)
+
+                        # Use the stored metadata (all tools now have metadata)
+                        server.tool(
+                            title=bound_method._mcp_title,
+                            annotations=bound_method._mcp_annotations
+                        )(bound_method)
+
                         tools_registered += 1
                         break
             except Exception as e:

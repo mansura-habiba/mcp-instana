@@ -7,8 +7,10 @@ from datetime import datetime
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
+from mcp_instana.tools.application.application_topology import (
+    ApplicationTopologyMCPTools,
+)
 
-from src.application.application_topology import ApplicationTopologyMCPTools
 from src.core.server import MCPState, execute_tool
 
 
@@ -53,7 +55,7 @@ class TestApplicationTopologyE2E:
         import json
         mock_response.data = json.dumps(mock_response_data).encode('utf-8')
 
-        with patch('src.application.application_topology.ApplicationTopologyApi') as mock_api_class:
+        with patch('mcp_instana.tools.application.application_topology.ApplicationTopologyApi') as mock_api_class:
             # Set up the mock API
             mock_api = MagicMock()
             mock_api.get_services_map_without_preload_content.return_value = mock_response
@@ -100,7 +102,7 @@ class TestApplicationTopologyE2E:
         import json
         mock_response.data = json.dumps(mock_response_data).encode('utf-8')
 
-        with patch('src.application.application_topology.ApplicationTopologyApi') as mock_api_class:
+        with patch('mcp_instana.tools.application.application_topology.ApplicationTopologyApi') as mock_api_class:
             # Set up the mock API
             mock_api = MagicMock()
             mock_api.get_services_map_without_preload_content.return_value = mock_response
@@ -144,7 +146,7 @@ class TestApplicationTopologyE2E:
     async def test_get_application_topology_error_handling(self, instana_credentials):
         """Test error handling in get_application_topology."""
 
-        with patch('src.application.application_topology.ApplicationTopologyApi') as mock_api_class:
+        with patch('mcp_instana.tools.application.application_topology.ApplicationTopologyApi') as mock_api_class:
             # Set up the mock API to raise an exception
             mock_api = MagicMock()
             mock_api.get_services_map_without_preload_content.side_effect = Exception("API Error")
@@ -170,7 +172,7 @@ class TestApplicationTopologyE2E:
     async def test_get_application_topology_initialization_error(self, instana_credentials):
         """Test error handling during initialization."""
 
-        with patch('src.application.application_topology.ApplicationTopologyApi',
+        with patch('mcp_instana.tools.application.application_topology.ApplicationTopologyApi',
                   side_effect=Exception("Initialization Error")):
 
             # This should raise an exception during initialization
@@ -192,7 +194,7 @@ class TestApplicationTopologyE2E:
         mock_response = MagicMock()
         mock_response.data = "Invalid JSON response".encode('utf-8')
 
-        with patch('src.application.application_topology.ApplicationTopologyApi') as mock_api_class:
+        with patch('mcp_instana.tools.application.application_topology.ApplicationTopologyApi') as mock_api_class:
             # Set up the mock API
             mock_api = MagicMock()
             mock_api.get_services_map_without_preload_content.return_value = mock_response
@@ -226,7 +228,7 @@ class TestApplicationTopologyE2E:
         import json
         mock_response.data = json.dumps(mock_response_data).encode('utf-8')
 
-        with patch('src.application.application_topology.ApplicationTopologyApi') as mock_api_class:
+        with patch('mcp_instana.tools.application.application_topology.ApplicationTopologyApi') as mock_api_class:
 
             # Set up the mock API
             mock_api = MagicMock()
@@ -414,7 +416,7 @@ class TestApplicationTopologyE2E:
 
         import inspect
 
-        import src.application.application_topology as module
+        import mcp_instana.tools.application.application_topology as module
 
         # Get the source code of the module
         source_code = inspect.getsource(module)

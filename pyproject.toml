@@ -20,18 +20,23 @@ license = {text = "Apache-2.0"}
 
 # ONLY dependencies that are actually imported/used in the code
 dependencies = [
-    # Core MCP framework - imported in src/prompts/__init__.py and src/core/server.py
-    "fastmcp==2.10.3",
+    # Core MCP framework
+    "fastmcp==2.11.3",
+    
     # MCP SDK for types and annotations
     "mcp",
-    # Instana API client - imported in src/event/events_tools.py
+
+    # Instana API client
     "instana_client==1.0.0",
-    # HTTP client - imported in src/core/utils.py
+    
+    # HTTP client
     "requests==2.32.4",
-    # Environment loading - imported in src/core/server.py
+    
+    # Environment loading
     "python-dotenv==1.1.0",
-    # Data validation - imported in src/infrastructure/infrastructure_metrics.py
-    "pydantic==2.11.7"
+    
+    # Data validation
+    "pydantic==2.11.7",
 ]
 
 # Development dependencies for testing, linting, and development
@@ -54,15 +59,10 @@ dev = [
 
 
 [project.scripts]
-mcp-instana = "src.core.server:main"
-test = "tests.run_all_tests:main"
-test-coverage = "tests.run_all_tests_with_coverage:main"
-
-[tool.hatch.build.targets.wheel]
-packages = ["src"]
+mcp-instana = "mcp_instana.main:main"
 
 [tool.ruff]
-# Target Python 3.11
+# Target Python 3.10
 target-version = "py310"
 
 # Same as Black

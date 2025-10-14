@@ -5,7 +5,8 @@ E2E tests for Application Analyze MCP Tools
 from unittest.mock import MagicMock, patch
 
 import pytest
-from mcp_instana.tools.application.application_analyze import ApplicationAnalyzeMCPTools
+
+from src.application.application_analyze import ApplicationAnalyzeMCPTools
 
 
 class TestApplicationAnalyzeE2E:
@@ -63,7 +64,7 @@ class TestApplicationAnalyzeE2E:
     async def test_get_call_details_missing_params(self, instana_credentials):
         """Test get_call_details with missing parameters."""
 
-        with patch('mcp_instana.tools.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class:
+        with patch('src.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class:
             # Set up the mock API
             mock_api = MagicMock()
             mock_api_class.return_value = mock_api
@@ -223,7 +224,7 @@ class TestApplicationAnalyzeE2E:
     async def test_get_trace_details_missing_id(self, instana_credentials):
         """Test get_trace_details with missing ID."""
 
-        with patch('mcp_instana.tools.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class:
+        with patch('src.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class:
             # Set up the mock API
             mock_api = MagicMock()
             mock_api_class.return_value = mock_api
@@ -250,7 +251,7 @@ class TestApplicationAnalyzeE2E:
     async def test_get_trace_details_invalid_params(self, instana_credentials):
         """Test get_trace_details with invalid parameters."""
 
-        with patch('mcp_instana.tools.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class:
+        with patch('src.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class:
             # Set up the mock API
             mock_api = MagicMock()
             mock_api_class.return_value = mock_api
@@ -564,8 +565,8 @@ class TestApplicationAnalyzeE2E:
             ]
         }
 
-        with patch('mcp_instana.tools.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class, \
-             patch('mcp_instana.tools.application.application_analyze.GetCallGroups') as mock_get_call_groups:
+        with patch('src.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class, \
+             patch('src.application.application_analyze.GetCallGroups') as mock_get_call_groups:
 
             # Set up the mocks
             mock_api = MagicMock()
@@ -610,8 +611,8 @@ class TestApplicationAnalyzeE2E:
         mock_response = MagicMock()
         mock_response.to_dict.return_value = {"items": []}
 
-        with patch('mcp_instana.tools.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class, \
-             patch('mcp_instana.tools.application.application_analyze.GetCallGroups') as mock_get_call_groups:
+        with patch('src.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class, \
+             patch('src.application.application_analyze.GetCallGroups') as mock_get_call_groups:
 
             # Set up the mocks
             mock_api = MagicMock()
@@ -655,9 +656,7 @@ class TestApplicationAnalyzeE2E:
     async def test_get_grouped_calls_metrics_error_handling(self, instana_credentials):
         """Test error handling in get_grouped_calls_metrics."""
 
-        from mcp_instana.tools.application.application_analyze import (
-            ApplicationAnalyzeMCPTools,
-        )
+        from src.application.application_analyze import ApplicationAnalyzeMCPTools
         client = ApplicationAnalyzeMCPTools(
             read_token=instana_credentials["api_token"],
             base_url=instana_credentials["base_url"]
@@ -699,7 +698,7 @@ class TestApplicationAnalyzeE2E:
             "correlationType": "BACKEND_TRACE"
         }
 
-        with patch('mcp_instana.tools.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class:
+        with patch('src.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class:
             # Set up the mock API
             mock_api = MagicMock()
             mock_api.get_correlated_traces.return_value = mock_response
@@ -731,7 +730,7 @@ class TestApplicationAnalyzeE2E:
     async def test_get_correlated_traces_missing_id(self, instana_credentials):
         """Test get_correlated_traces with missing correlation ID."""
 
-        with patch('mcp_instana.tools.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class:
+        with patch('src.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class:
             # Set up the mock API
             mock_api = MagicMock()
             mock_api_class.return_value = mock_api
@@ -766,7 +765,7 @@ class TestApplicationAnalyzeE2E:
     @pytest.mark.mocked
     async def test_initialization_error_handling(self, instana_credentials):
         """Test error handling during client initialization."""
-        with patch('mcp_instana.tools.application.application_analyze.ApplicationAnalyzeApi',
+        with patch('src.application.application_analyze.ApplicationAnalyzeApi',
                   side_effect=Exception("API initialization failed")):
 
             # Creating the client should raise the exception
@@ -787,8 +786,8 @@ class TestApplicationAnalyzeE2E:
         mock_response = MagicMock()
         mock_response.to_dict.return_value = {"items": []}
 
-        with patch('mcp_instana.tools.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class, \
-             patch('mcp_instana.tools.application.application_analyze.GetTraces') as mock_get_traces:
+        with patch('src.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class, \
+             patch('src.application.application_analyze.GetTraces') as mock_get_traces:
 
             # Set up the mocks
             mock_api = MagicMock()
@@ -835,8 +834,8 @@ class TestApplicationAnalyzeE2E:
         mock_response = MagicMock()
         mock_response.to_dict.return_value = {"items": []}
 
-        with patch('mcp_instana.tools.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class, \
-             patch('mcp_instana.tools.application.application_analyze.GetTraces') as mock_get_traces:
+        with patch('src.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class, \
+             patch('src.application.application_analyze.GetTraces') as mock_get_traces:
 
             # Set up the mocks
             mock_api = MagicMock()
@@ -888,8 +887,8 @@ class TestApplicationAnalyzeE2E:
         mock_response = MagicMock()
         mock_response.to_dict.return_value = {"items": []}
 
-        with patch('mcp_instana.tools.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class, \
-             patch('mcp_instana.tools.application.application_analyze.GetCallGroups') as mock_get_call_groups:
+        with patch('src.application.application_analyze.ApplicationAnalyzeApi') as mock_api_class, \
+             patch('src.application.application_analyze.GetCallGroups') as mock_get_call_groups:
 
             # Set up the mocks
             mock_api = MagicMock()

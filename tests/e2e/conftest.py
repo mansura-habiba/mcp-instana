@@ -9,7 +9,8 @@ from unittest.mock import AsyncMock, MagicMock
 import pytest
 
 # Import your application modules
-from mcp_instana.utils import BaseInstanaClient, create_app
+from src.core.server import create_app
+from src.core.utils import BaseInstanaClient
 
 
 @pytest.fixture(scope="session")

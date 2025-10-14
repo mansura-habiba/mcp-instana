@@ -5,9 +5,8 @@ E2E tests for Application Settings MCP Tools
 from unittest.mock import MagicMock
 
 import pytest  #type: ignore
-from mcp_instana.tools.application.application_settings import (
-    ApplicationSettingsMCPTools,
-)
+
+from src.application.application_settings import ApplicationSettingsMCPTools
 
 
 class TestApplicationSettingsE2E:

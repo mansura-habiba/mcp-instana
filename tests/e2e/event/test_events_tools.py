@@ -16,7 +16,7 @@ class ApiException(Exception):
         self.reason = reason
         super().__init__(*args, **kwargs)
 
-from mcp_instana.tools.event.events_tools import AgentMonitoringEventsMCPTools
+from src.event.events_tools import AgentMonitoringEventsMCPTools
 
 
 class TestAgentMonitoringEventsE2E:
@@ -39,7 +39,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_success(self, mock_events_api, instana_credentials):
         """Test getting an event by ID successfully."""
 
@@ -89,7 +89,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_error(self, mock_events_api, instana_credentials):
         """Test error handling when getting an event by ID."""
 
@@ -116,7 +116,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_api_exception(self, mock_events_api, instana_credentials):
         """Test handling of ApiException when getting an event by ID."""
 
@@ -142,7 +142,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.datetime')
+    @patch('src.event.events_tools.datetime')
     async def test_get_kubernetes_info_events_success(self, mock_datetime, instana_credentials):
         """Test getting Kubernetes info events successfully."""
 
@@ -221,7 +221,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.datetime')
+    @patch('src.event.events_tools.datetime')
     async def test_get_kubernetes_info_events_with_time_range(self, mock_datetime, instana_credentials):
         """Test getting Kubernetes info events with natural language time range."""
 
@@ -279,7 +279,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.datetime')
+    @patch('src.event.events_tools.datetime')
     async def test_get_kubernetes_info_events_empty_result(self, mock_datetime, instana_credentials):
         """Test getting Kubernetes info events with empty result."""
 
@@ -320,7 +320,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.datetime')
+    @patch('src.event.events_tools.datetime')
     async def test_get_kubernetes_info_events_error(self, mock_datetime, instana_credentials):
         """Test error handling when getting Kubernetes info events."""
 
@@ -359,7 +359,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.datetime')
+    @patch('src.event.events_tools.datetime')
     async def test_get_kubernetes_info_events_time_range_parsing(self, mock_datetime, instana_credentials):
         """Test time range parsing in get_kubernetes_info_events."""
 
@@ -405,7 +405,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.datetime')
+    @patch('src.event.events_tools.datetime')
     async def test_get_agent_monitoring_events_success(self, mock_datetime, instana_credentials):
         """Test getting agent monitoring events successfully."""
 
@@ -482,7 +482,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.datetime')
+    @patch('src.event.events_tools.datetime')
     async def test_get_agent_monitoring_events_with_time_range(self, mock_datetime, instana_credentials):
         """Test getting agent monitoring events with natural language time range."""
 
@@ -539,7 +539,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.datetime')
+    @patch('src.event.events_tools.datetime')
     async def test_get_agent_monitoring_events_empty_result(self, mock_datetime, instana_credentials):
         """Test getting agent monitoring events with empty result."""
 
@@ -580,7 +580,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.datetime')
+    @patch('src.event.events_tools.datetime')
     async def test_get_agent_monitoring_events_error(self, mock_datetime, instana_credentials):
         """Test error handling when getting agent monitoring events."""
 
@@ -614,7 +614,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.datetime')
+    @patch('src.event.events_tools.datetime')
     async def test_comprehensive_time_range_parsing(self, mock_datetime, instana_credentials):
         """Test comprehensive time range parsing in get_agent_monitoring_events."""
 
@@ -685,7 +685,7 @@ class TestAgentMonitoringEventsE2E:
         mock_api_client.agent_monitoring_events.return_value = mock_response
 
         # Mock datetime.now() to return a fixed time
-        with patch('mcp_instana.tools.event.events_tools.datetime') as mock_datetime:
+        with patch('src.event.events_tools.datetime') as mock_datetime:
             mock_now = MagicMock()
             mock_now.timestamp.return_value = 1625097900.0  # 2021-07-01 00:05:00 UTC
             mock_datetime.now.return_value = mock_now
@@ -721,7 +721,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_success(self, mock_events_api, instana_credentials):
         """Test getting events by IDs successfully."""
 
@@ -784,7 +784,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_single_id(self, mock_events_api, instana_credentials):
         """Test getting events by a single ID."""
 
@@ -834,7 +834,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_empty_result(self, mock_events_api, instana_credentials):
         """Test getting events by IDs with empty result."""
 
@@ -869,7 +869,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_error(self, mock_events_api, instana_credentials):
         """Test error handling when getting events by IDs."""
 
@@ -906,7 +906,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_api_exception(self, mock_events_api, instana_credentials):
         """Test handling of ApiException when getting events by IDs."""
 
@@ -957,7 +957,7 @@ class TestAgentMonitoringEventsE2E:
         )
 
         # Mock datetime.now() to return a fixed time
-        with patch('mcp_instana.tools.event.events_tools.datetime') as mock_datetime:
+        with patch('src.event.events_tools.datetime') as mock_datetime:
             mock_now = MagicMock()
             mock_now.timestamp.return_value = 1625097900.0  # 2021-07-01 00:05:00 UTC
             mock_datetime.now.return_value = mock_now
@@ -1100,7 +1100,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_with_batch_api_failure(self, mock_events_api, instana_credentials):
         """Test get_events_by_ids with batch API failure and fallback to individual requests."""
         # Create mock events
@@ -1145,7 +1145,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_with_string_input(self, mock_events_api, instana_credentials):
         """Test get_events_by_ids with string input instead of list."""
         # Create mock events
@@ -1196,7 +1196,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_process_time_range_with_edge_cases(self, mock_events_api, instana_credentials):
         """Test _process_time_range method with edge cases."""
         # Create the client
@@ -1241,7 +1241,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_process_result_with_edge_cases(self, mock_events_api, instana_credentials):
         """Test _process_result method with edge cases."""
         # Create the client
@@ -1328,7 +1328,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_summarize_events_result_with_edge_cases(self, mock_events_api, instana_credentials):
         """Test _summarize_events_result method with edge cases."""
         # Create the client
@@ -1421,7 +1421,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_issues_with_empty_result(self, mock_events_api, instana_credentials):
         """Test get_issues with empty result."""
         # Create a mock API client
@@ -1448,7 +1448,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_issues_with_api_error(self, mock_events_api, instana_credentials):
         """Test get_issues with API error."""
         # Create a mock API client
@@ -1477,7 +1477,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_incidents_with_empty_result(self, mock_events_api, instana_credentials):
         """Test get_incidents with empty result."""
         # Create a mock API client
@@ -1504,7 +1504,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_incidents_with_api_error(self, mock_events_api, instana_credentials):
         """Test get_incidents with API error."""
         # Create a mock API client
@@ -1534,7 +1534,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_changes_with_api_error(self, mock_events_api, instana_credentials):
         """Test get_changes with API error."""
         # Create a mock API client
@@ -1564,7 +1564,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_with_empty_input(self, mock_events_api, instana_credentials):
         """Test get_events_by_ids with empty input."""
         # Create a mock API client
@@ -1591,7 +1591,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_process_time_range_with_various_formats(self, mock_events_api, instana_credentials):
         """Test _process_time_range method with various time range formats."""
         # Create the client
@@ -1651,7 +1651,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_missing_event_id(self, mock_events_api, instana_credentials):
         """Test get_event with missing event_id parameter."""
         # Create the client
@@ -1679,7 +1679,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_fallback_approach_json_decode_error(self, mock_events_api, instana_credentials):
         """Test get_event fallback approach with JSON decode error."""
         # Create a mock API client
@@ -1713,7 +1713,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_fallback_approach_exception(self, mock_events_api, instana_credentials):
         """Test get_event fallback approach with exception."""
         # Create a mock API client
@@ -1743,7 +1743,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_with_various_response_formats(self, mock_events_api, instana_credentials):
         """Test get_event with various response formats."""
         # Create different mock responses
@@ -1854,7 +1854,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_issues_with_empty_api_response(self, mock_events_api, instana_credentials):
         """Test get_issues with empty API response."""
         # Create a mock API client
@@ -1880,7 +1880,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_incidents_with_exception_handling(self, mock_events_api, instana_credentials):
         """Test get_incidents with exception handling."""
         # Create a mock API client
@@ -1907,7 +1907,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_with_empty_string(self, mock_events_api, instana_credentials):
         """Test get_events_by_ids with empty string."""
         # Create a mock API client
@@ -1930,7 +1930,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_with_ast_eval_error(self, mock_events_api, instana_credentials):
         """Test get_events_by_ids with AST eval error."""
         # Create a mock API client
@@ -1954,7 +1954,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_with_batch_api_partial_failure(self, mock_events_api, instana_credentials):
         """Test get_events_by_ids with batch API partial failure."""
         # Create mock events
@@ -2008,7 +2008,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_with_complex_string_input(self, mock_events_api, instana_credentials):
         """Test get_events_by_ids with complex string input."""
         # Create mock events
@@ -2054,7 +2054,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_to_dict_conversion(self, mock_events_api, instana_credentials):
         """Test get_event with to_dict conversion"""
         # Create a mock API client
@@ -2088,7 +2088,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_dict_conversion(self, mock_events_api, instana_credentials):
         """Test get_event with dict conversion"""
         # Create a mock API client
@@ -2121,7 +2121,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_other_conversion(self, mock_events_api, instana_credentials):
         """Test get_event with other object conversion"""
         # Create a mock API client
@@ -2158,7 +2158,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_fallback_success(self, mock_events_api, instana_credentials):
         """Test get_event fallback approach success"""
         # Create a mock API client
@@ -2195,7 +2195,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_fallback_non_200(self, mock_events_api, instana_credentials):
         """Test get_event fallback approach with non-200 status"""
         # Create a mock API client
@@ -2228,7 +2228,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_fallback_json_error(self, mock_events_api, instana_credentials):
         """Test get_event fallback approach with JSON decode error"""
         # Create a mock API client
@@ -2261,7 +2261,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_event_fallback_exception(self, mock_events_api, instana_credentials):
         """Test get_event fallback approach with exception """
         # Create a mock API client
@@ -2290,7 +2290,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_kubernetes_info_events_api_error(self, mock_events_api, instana_credentials):
         """Test get_kubernetes_info_events with API error"""
         # Create a mock API client
@@ -2317,7 +2317,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_kubernetes_info_events_processing(self, mock_events_api, instana_credentials):
         """Test get_kubernetes_info_events event processing"""
         # Create a mock event with to_dict method
@@ -2360,7 +2360,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_kubernetes_info_events_analysis(self, mock_events_api, instana_credentials):
         """Test get_kubernetes_info_events analysis logic."""
         # Create mock events with different problems
@@ -2416,7 +2416,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_agent_monitoring_events_api_error(self, mock_events_api, instana_credentials):
         """Test get_agent_monitoring_events with API error"""
         # Create a mock API client
@@ -2443,7 +2443,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_agent_monitoring_events_processing(self, mock_events_api, instana_credentials):
         """Test get_agent_monitoring_events event processing"""
         # Create a mock event with to_dict method
@@ -2491,7 +2491,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_agent_monitoring_events_analysis(self, mock_events_api, instana_credentials):
         """Test get_agent_monitoring_events analysis logic"""
         # Create mock events with different problems
@@ -2545,7 +2545,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_to_dict_conversion(self, mock_events_api, instana_credentials):
         """Test get_events_by_ids with to_dict conversion"""
         # Create mock events with to_dict method
@@ -2608,7 +2608,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_mixed_objects(self, mock_events_api, instana_credentials):
         """Test get_events_by_ids with mixed object types"""
         # Create a mock event with to_dict method
@@ -2671,7 +2671,7 @@ class TestAgentMonitoringEventsE2E:
 
     @pytest.mark.asyncio
     @pytest.mark.mocked
-    @patch('mcp_instana.tools.event.events_tools.EventsApi')
+    @patch('src.event.events_tools.EventsApi')
     async def test_get_events_by_ids_summary_generation(self, mock_events_api, instana_credentials):
         """Test get_events_by_ids summary generation"""
         # Create mock events

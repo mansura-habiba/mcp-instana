@@ -56,7 +56,7 @@ dependencies = [
 ]
 
 [project.scripts]
-mcp-instana = "mcp_instana.main:main"
+mcp-instana = "src.core.server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]
